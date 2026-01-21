@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_ParametricSketcher_FILE /Users/andreivarga/Documents/an3/SEProject/PSE/build/ParametricSketcher)
+set(__QT_DEPLOY_TARGET_ParametricSketcher_TYPE EXECUTABLE)
