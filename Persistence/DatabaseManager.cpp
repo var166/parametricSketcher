@@ -40,7 +40,6 @@ bool DatabaseManager::init(const QString& dbName) {
                     "role TEXT)");
     if (!ok) return false;
 
-    // Pre-populate users if empty
     query.exec("SELECT COUNT(*) FROM users");
     if (query.next() && query.value(0).toInt() == 0) {
         query.prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
@@ -70,7 +69,7 @@ bool DatabaseManager::saveSketch(const std::shared_ptr<Sketch>& sketch, const QS
     }
 
     int sketchId = query.lastInsertId().toInt();
-    if (sketchId == 0) { // If REPLACE happened, we might need to get the ID
+    if (sketchId == 0) {
         query.prepare("SELECT id FROM sketches WHERE name = :name");
         query.bindValue(":name", name);
         if (query.exec() && query.next()) {

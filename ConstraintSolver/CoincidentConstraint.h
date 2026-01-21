@@ -42,7 +42,6 @@ public:
     QJsonObject toJson() const override {
         QJsonObject json;
         json["type"] = "Coincident";
-        // In a real system we would use IDs here
         return json;
     }
 };

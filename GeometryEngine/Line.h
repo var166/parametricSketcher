@@ -4,11 +4,10 @@
 #include "GeometricEntity.h"
 #include "Point.h"
 #include <memory>
-#include <QPainter> // <--- Required for drawing
+#include <QPainter>
 
 class Line : public GeometricEntity {
 private:
-    // These must exist for the draw function to work
     std::shared_ptr<Point> m_start;
     std::shared_ptr<Point> m_end;
 

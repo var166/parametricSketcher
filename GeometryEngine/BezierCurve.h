@@ -30,14 +30,12 @@ public:
                          m_controlPoints[2]->x(), m_controlPoints[2]->y(),
                          m_controlPoints[3]->x(), m_controlPoints[3]->y());
         } else {
-            // Basic polyline for other degrees or fallback
             for (size_t i = 1; i < m_controlPoints.size(); ++i) {
                 path.lineTo(m_controlPoints[i]->x(), m_controlPoints[i]->y());
             }
         }
         painter.drawPath(path);
 
-        // Draw control points and lines if selected
         if (m_selected) {
             painter.setPen(QPen(Qt::gray, 1, Qt::DashLine));
             for (size_t i = 0; i < m_controlPoints.size(); ++i) {
@@ -53,13 +51,11 @@ public:
     bool contains(const QPointF& point, double tolerance) const override {
         if (m_controlPoints.size() < 2) return false;
         
-        // Simple hit testing: distance to any control point or to the path approximated by lines
         for (const auto& cp : m_controlPoints) {
             if (std::hypot(cp->x() - point.x(), cp->y() - point.y()) <= tolerance)
                 return true;
         }
         
-        // Better: approximate path and check distance to segments
         QPainterPath path;
         path.moveTo(m_controlPoints[0]->x(), m_controlPoints[0]->y());
         if (m_controlPoints.size() == 4) {
@@ -74,7 +70,6 @@ public:
         
         QPainterPath strokedPath = QPainterPathStroker().createStroke(path);
         return path.toFillPolygon().containsPoint(point, Qt::OddEvenFill) || 
-               // This is not perfect, let's use a simpler approach: check flattened path
                false; // Fallback
     }
 

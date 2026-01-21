@@ -9,7 +9,6 @@ void Sketch::addEntity(std::shared_ptr<GeometricEntity> entity) {
     }
 }
 
-// Implementation with QPainter&
 void Sketch::draw(QPainter& painter) const {
     for (const auto& entity : m_entities) {
         if (entity) {

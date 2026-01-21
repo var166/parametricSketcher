@@ -15,7 +15,6 @@ Solver::Status Solver::solve() {
         }
 
         if (r.norm() < epsilon) {
-            // Check degrees of freedom
             if (m_constraints.size() < m_parameters.size()) return Status::UnderConstrained;
             if (m_constraints.size() > m_parameters.size()) return Status::OverConstrained;
             return Status::Solved;
@@ -29,8 +28,6 @@ Solver::Status Solver::solve() {
             }
         }
 
-        // Newton step: Delta = -J^+ * r
-        // Using pseudo-inverse for non-square systems
         Eigen::VectorXd delta = J.completeOrthogonalDecomposition().solve(-r);
 
         for (size_t j = 0; j < m_parameters.size(); ++j) {

@@ -28,12 +28,7 @@ public:
         double dx = point.x() - m_center->x();
         double dy = point.y() - m_center->y();
         
-        // Equation of ellipse: (x/rx)^2 + (y/ry)^2 = 1
-        // We check if it's close to 1
         double val = (dx*dx) / (m_rx*m_rx) + (dy*dy) / (m_ry*m_ry);
-        // This is a bit tricky with tolerance, let's use a simple distance based check for now or similar
-        // Better: check if point is within tolerance of the boundary
-        // For simplicity, we can just check if the point satisfies the ellipse equation within some epsilon
         return std::abs(std::sqrt(val) - 1.0) < (tolerance / std::min(m_rx, m_ry));
     }
 

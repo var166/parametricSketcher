@@ -16,7 +16,6 @@ public:
 
     void addEntity(std::shared_ptr<GeometricEntity> entity);
     
-    // Updated: Accepts QPainter&
     void draw(QPainter& painter) const;
 
     const std::vector<std::shared_ptr<GeometricEntity>>& getEntities() const;

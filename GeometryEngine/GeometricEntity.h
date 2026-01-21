@@ -30,12 +30,10 @@ public:
 
     virtual void draw(QPainter& painter) const = 0;
 
-    // For the solver: returns pointers to mutable parameters
     virtual std::vector<double*> getParameters() = 0;
 
     virtual EntityType getType() const = 0;
 
-    // JSON Serialization
     virtual QJsonObject toJson() const = 0;
     virtual void fromJson(const QJsonObject& json) = 0;
 
